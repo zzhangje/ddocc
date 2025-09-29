@@ -157,9 +157,7 @@ public class Robot extends LoggedRobot {
   }
 
   @Override
-  public void teleopPeriodic() {
-    // robotContainer.getChassis();
-  }
+  public void teleopPeriodic() {}
 
   @Override
   public void teleopExit() {}
@@ -170,7 +168,14 @@ public class Robot extends LoggedRobot {
   }
 
   @Override
-  public void testPeriodic() {}
+  public void testPeriodic() {
+    robotContainer
+        .getChassis()
+        .setWheelsVoltages(
+            Math.abs(robotContainer.getDriver().getLeftY()) * robotContainer.getDriver().getLeftY(),
+            Math.abs(robotContainer.getDriver().getRightY())
+                * robotContainer.getDriver().getRightY());
+  }
 
   @Override
   public void testExit() {}

@@ -1,5 +1,8 @@
 package frc.robot.subsystems.chassis;
 
+import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.math.kinematics.DifferentialDriveWheelPositions;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.lib.dashboard.Alert;
 import frc.lib.dashboard.LoggedTunableNumber;
@@ -8,8 +11,23 @@ import frc.lib.interfaces.motor.GenericWheelIOInputsAutoLogged;
 import frc.lib.interfaces.motor.GenericWheelIOKraken;
 import frc.lib.interfaces.motor.GenericWheelIOSim;
 import frc.robot.Constants;
+import frc.robot.RobotContainer;
+import org.littletonrobotics.junction.Logger;
 
 public class Chassis extends SubsystemBase {
+  public record WheeledObservation(
+      double timestamp, DifferentialDriveWheelPositions wheelPositions, Rotation2d yaw) {}
+
+  public void setWheelsVelocities(double leftVelocity, double rightVelocity) {
+    leftIO.setVelocity(leftVelocity, 0.0);
+    rightIO.setVelocity(rightVelocity, 0.0);
+  }
+
+  public void setWheelsVoltages(double leftVoltage, double rightVoltage) {
+    leftIO.setVoltage(leftVoltage);
+    rightIO.setVoltage(rightVoltage);
+  }
+
   static {
     final var driveGains = ChassisConfig.getDriveGains();
     ChassisConfig.driveKp.initDefault(driveGains.kp());
@@ -30,6 +48,9 @@ public class Chassis extends SubsystemBase {
     leftIO.updateInputs(leftInputs);
     rightIO.updateInputs(rightInputs);
 
+    Logger.processInputs("Chassis Left", leftInputs);
+    Logger.processInputs("Chassis Right", rightInputs);
+
     leftOfflineAlert.set(!leftInputs.connected);
     rightOfflineAlert.set(!rightInputs.connected);
 
@@ -48,6 +69,15 @@ public class Chassis extends SubsystemBase {
         ChassisConfig.driveKp,
         ChassisConfig.driveKd,
         ChassisConfig.driveKs);
+
+    // Simplify for tank drive odometry
+    RobotContainer.getOdometry()
+        .addWheeledObservation(
+            new WheeledObservation(
+                Timer.getFPGATimestamp(),
+                new DifferentialDriveWheelPositions(
+                    leftInputs.positionRad, rightInputs.positionRad),
+                null));
   }
 
   private Chassis(GenericWheelIO leftIO, GenericWheelIO rightIO) {

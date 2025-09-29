@@ -24,6 +24,7 @@ public class RobotContainer {
   @Getter private static final TrajectorySet trajectorySet = new TrajectorySet();
 
   // driver
+  @Getter // for this project only
   CommandXboxController driver = new CommandXboxController(Ports.Joystick.DRIVER);
 
   // subsystem

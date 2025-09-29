@@ -1,13 +1,13 @@
 {
   "hubs": [
     {
-      "x": 1244,
-      "y": 481,
-      "width": 988,
-      "height": 786,
+      "x": 1024,
+      "y": 0,
+      "width": 1024,
+      "height": 1232,
       "state": {
         "sidebar": {
-          "width": 297,
+          "width": 160,
           "expanded": [
             "/DriverStation/Joystick0/POVs",
             "/DriverStation/Joystick0/AxisValues",
@@ -92,8 +92,6 @@
             "/AdvantageKit/RealOutputs/test/invPose/rotation",
             "/AdvantageKit/RealOutputs/test/giao",
             "/AdvantageKit/RealOutputs/test/giao/q",
-            "/AdvantageKit/RealOutputs/Odometry/WheeledPose",
-            "/AdvantageKit/RealOutputs/Odometry/EstimatedPose",
             "/AdvantageKit/RealOutputs/Visualize/Component/0",
             "/AdvantageKit/RealOutputs/Visualize/Component/0/rotation",
             "/AdvantageKit/RealOutputs/Visualize/Component/0/translation",
@@ -188,7 +186,13 @@
             "/AdvantageKit/NodeSelector/SelectedNode",
             "/AdvantageKit/RealOutputs/Swerve/ProceedToReef",
             "/AdvantageKit/RealOutputs/Swerve/FollowTrajectory",
-            "/AdvantageKit/RealOutputs/Intake"
+            "/AdvantageKit/RealOutputs/Intake",
+            "/AdvantageKit/RealOutputs/Odometry",
+            "/AdvantageKit/RealOutputs/Odometry/WheeledPose/translation",
+            "/AdvantageKit/RealOutputs/Odometry/WheeledPose",
+            "/AdvantageKit/RealOutputs/Odometry/WheeledPose/rotation",
+            "/AdvantageKit/Chassis Right",
+            "/Tuning"
           ]
         },
         "tabs": {
@@ -361,120 +365,7 @@
                     "logType": "Pose2d",
                     "visible": true,
                     "options": {
-                      "model": "8583 Nailong"
-                    }
-                  },
-                  {
-                    "type": "swerveStates",
-                    "logKey": "NT:/AdvantageKit/RealOutputs/Swerve/SwerveStates/GoalModuleStates",
-                    "logType": "SwerveModuleState[]",
-                    "visible": true,
-                    "options": {
-                      "color": "#00ff00",
-                      "arrangement": "0,3,1,2"
-                    }
-                  },
-                  {
-                    "type": "swerveStates",
-                    "logKey": "NT:/AdvantageKit/RealOutputs/Swerve/ModuleStates",
-                    "logType": "SwerveModuleState[]",
-                    "visible": true,
-                    "options": {
-                      "color": "#ff8c00",
-                      "arrangement": "0,3,1,2"
-                    }
-                  },
-                  {
-                    "type": "vision",
-                    "logKey": "NT:/AdvantageKit/RealOutputs/ApriltagVision/AllUsedTagInField",
-                    "logType": "Pose3d[]",
-                    "visible": true,
-                    "options": {
-                      "color": "#00ff00",
-                      "size": "normal"
-                    }
-                  },
-                  {
-                    "type": "component",
-                    "logKey": "NT:/AdvantageKit/RealOutputs/Visualization/Components",
-                    "logType": "Pose3d[]",
-                    "visible": true,
-                    "options": {}
-                  },
-                  {
-                    "type": "gamePiece",
-                    "logKey": "NT:/AdvantageKit/RealOutputs/Visualization/Coral/pickableGamePiecePose",
-                    "logType": "Pose3d[]",
-                    "visible": true,
-                    "options": {
-                      "variant": "Coral"
-                    }
-                  },
-                  {
-                    "type": "gamePiece",
-                    "logKey": "NT:/AdvantageKit/RealOutputs/Visualization/Coral/scoredGamePiecePose",
-                    "logType": "Pose3d[]",
-                    "visible": true,
-                    "options": {
-                      "variant": "Coral"
-                    }
-                  },
-                  {
-                    "type": "gamePiece",
-                    "logKey": "NT:/AdvantageKit/RealOutputs/Visualization/Algae/pickableGamePiecePose",
-                    "logType": "Pose3d[]",
-                    "visible": true,
-                    "options": {
-                      "variant": "Algae"
-                    }
-                  },
-                  {
-                    "type": "gamePiece",
-                    "logKey": "NT:/AdvantageKit/RealOutputs/Visualization/Algae/scoredGamePiecePose",
-                    "logType": "Pose3d[]",
-                    "visible": true,
-                    "options": {
-                      "variant": "Algae"
-                    }
-                  },
-                  {
-                    "type": "ghost",
-                    "logKey": "NT:/AdvantageKit/RealOutputs/Swerve/ProceedToProcessor/GoalPose",
-                    "logType": "Pose2d",
-                    "visible": true,
-                    "options": {
-                      "model": "Duck Bot",
-                      "color": "#ffff00"
-                    }
-                  },
-                  {
-                    "type": "ghost",
-                    "logKey": "NT:/AdvantageKit/RealOutputs/Swerve/ProceedToNet/GoalPose",
-                    "logType": "Pose2d",
-                    "visible": true,
-                    "options": {
-                      "model": "Duck Bot",
-                      "color": "#ffff00"
-                    }
-                  },
-                  {
-                    "type": "ghost",
-                    "logKey": "NT:/AdvantageKit/RealOutputs/Swerve/ProceedToReef/GoalPose",
-                    "logType": "Pose2d",
-                    "visible": true,
-                    "options": {
-                      "model": "Duck Bot",
-                      "color": "#ffff00"
-                    }
-                  },
-                  {
-                    "type": "trajectory",
-                    "logKey": "NT:/AdvantageKit/RealOutputs/Swerve/FollowTrajectory/TrajectoryPoses",
-                    "logType": "Pose2d[]",
-                    "visible": true,
-                    "options": {
-                      "color": "#00ffff",
-                      "size": "normal"
+                      "model": "KitBot"
                     }
                   }
                 ],
@@ -486,14 +377,14 @@
                 "cameraIndex": -1,
                 "orbitFov": 50,
                 "cameraPosition": [
-                  -8.545385102716374,
-                  4.02338075901785,
-                  -5.989470274669745
+                  -10.234849334014314,
+                  8.17526818562572,
+                  -5.287002548059442
                 ],
                 "cameraTarget": [
-                  -4.009300444303191,
-                  1.4827256612992659,
-                  -0.3494633338408117
+                  -3.231145249418479,
+                  1.940924557586922,
+                  -0.9135937382635683
                 ]
               },
               "controlsHeight": 321
@@ -597,11 +488,21 @@
                 "leftSources": [
                   {
                     "type": "stepped",
-                    "logKey": "NT:/AdvantageKit/Arm Shoulder/PositionMeter",
+                    "logKey": "NT:/AdvantageKit/Chassis Right/PositionRad",
                     "logType": "Number",
                     "visible": true,
                     "options": {
                       "color": "#2b66a2",
+                      "size": "normal"
+                    }
+                  },
+                  {
+                    "type": "stepped",
+                    "logKey": "NT:/AdvantageKit/Chassis Right/VelRadPerSec",
+                    "logType": "Number",
+                    "visible": true,
+                    "options": {
+                      "color": "#e5b31b",
                       "size": "normal"
                     }
                   }
@@ -676,5 +577,5 @@
     }
   ],
   "satellites": [],
-  "version": "4.1.0"
+  "version": "4.1.6"
 }

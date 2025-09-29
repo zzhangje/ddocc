@@ -8,7 +8,7 @@ import frc.lib.dashboard.LoggedTunableNumber;
 import frc.robot.Constants;
 import frc.robot.Constants.DebugGroup;
 
-class ChassisConfig {
+public class ChassisConfig {
   static final LoggedTunableNumber driveKp = new LoggedTunableNumber(DebugGroup.CHASSIS, "DriveKp");
   static final LoggedTunableNumber driveKd = new LoggedTunableNumber(DebugGroup.CHASSIS, "DriveKd");
   static final LoggedTunableNumber driveKs = new LoggedTunableNumber(DebugGroup.CHASSIS, "DriveKs");
@@ -16,11 +16,12 @@ class ChassisConfig {
   static Gains getDriveGains() {
     return switch (Constants.MODE) {
       case REAL -> new Gains(10.0, 0.1, 0.2);
-      case SIM, REPLAY -> new Gains(5.0, 0.0, 0.1);
+      case SIM, REPLAY -> new Gains(0.25, 0.0, 0.0);
     };
   }
 
   static final double DRIVE_REDUCTION = 10.71; // 10.71:1
+  public static final double TRACK_WIDTH = 0.69; // meters
 
   static TalonFXConfiguration getDriveConfig() {
     var config = new TalonFXConfiguration();
