@@ -63,23 +63,23 @@ export default defineConfig({
           items: [
             {
               text: '1. 软件配置和仿真运行', 
-              link: '/zh/tutorial/0'
-            },
-            {
-              text: '2. 创建第一个子系统', 
               link: '/zh/tutorial/1'
             },
             {
-              text: '3. 创建第一个基本命令', 
+              text: '2. 创建第一个子系统', 
               link: '/zh/tutorial/2'
             },
             {
-              text: '4. 组合一个复杂的命令', 
+              text: '3. 创建第一个基本命令', 
               link: '/zh/tutorial/3'
             },
             {
-              text: '5. 编排一个自动程序', 
+              text: '4. 组合一个复杂的命令', 
               link: '/zh/tutorial/4'
+            },
+            {
+              text: '5. 编排一个自动程序', 
+              link: '/zh/tutorial/5'
             }
           ]
         },
