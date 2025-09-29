@@ -15,17 +15,9 @@ import frc.robot.RobotContainer;
 import org.littletonrobotics.junction.Logger;
 
 public class Chassis extends SubsystemBase {
-  public record WheeledObservation(
-      double timestamp, DifferentialDriveWheelPositions wheelPositions, Rotation2d yaw) {}
-
   public void setWheelsVelocities(double leftVelocity, double rightVelocity) {
-    leftIO.setVelocity(leftVelocity, 0.0);
-    rightIO.setVelocity(rightVelocity, 0.0);
-  }
-
-  public void setWheelsVoltages(double leftVoltage, double rightVoltage) {
-    leftIO.setVoltage(leftVoltage);
-    rightIO.setVoltage(rightVoltage);
+    leftIO.setVelocity(leftVelocity / ChassisConfig.WHEEL_RADIUS_METER, 0.0);
+    rightIO.setVelocity(rightVelocity / ChassisConfig.WHEEL_RADIUS_METER, 0.0);
   }
 
   static {
@@ -76,7 +68,8 @@ public class Chassis extends SubsystemBase {
             new WheeledObservation(
                 Timer.getFPGATimestamp(),
                 new DifferentialDriveWheelPositions(
-                    leftInputs.positionRad, rightInputs.positionRad),
+                    leftInputs.positionRad * ChassisConfig.WHEEL_RADIUS_METER,
+                    rightInputs.positionRad * ChassisConfig.WHEEL_RADIUS_METER),
                 null));
   }
 
@@ -116,4 +109,7 @@ public class Chassis extends SubsystemBase {
   public static Chassis createIO() {
     return new Chassis(new GenericWheelIO() {}, new GenericWheelIO() {});
   }
+
+  public record WheeledObservation(
+      double timestamp, DifferentialDriveWheelPositions wheelPositions, Rotation2d yaw) {}
 }

@@ -171,9 +171,12 @@ public class Robot extends LoggedRobot {
   public void testPeriodic() {
     robotContainer
         .getChassis()
-        .setWheelsVoltages(
-            Math.abs(robotContainer.getDriver().getLeftY()) * robotContainer.getDriver().getLeftY(),
-            Math.abs(robotContainer.getDriver().getRightY())
+        .setWheelsVelocities(
+            5.0
+                * Math.abs(robotContainer.getDriver().getLeftY())
+                * robotContainer.getDriver().getLeftY(),
+            5.0
+                * Math.abs(robotContainer.getDriver().getRightY())
                 * robotContainer.getDriver().getRightY());
   }
 

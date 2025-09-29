@@ -22,6 +22,7 @@ public class ChassisConfig {
 
   static final double DRIVE_REDUCTION = 10.71; // 10.71:1
   public static final double TRACK_WIDTH = 0.69; // meters
+  static final double WHEEL_RADIUS_METER = 0.0479;
 
   static TalonFXConfiguration getDriveConfig() {
     var config = new TalonFXConfiguration();
