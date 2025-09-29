@@ -16,6 +16,7 @@ import frc.lib.service.TunableManager;
 import frc.lib.service.Visualizer;
 import frc.reefscape.TrajectorySet;
 import frc.robot.Constants.Ports;
+import frc.robot.subsystems.chassis.Chassis;
 import lombok.Getter;
 
 public class RobotContainer {
@@ -26,14 +27,19 @@ public class RobotContainer {
   CommandXboxController driver = new CommandXboxController(Ports.Joystick.DRIVER);
 
   // subsystem
+  @Getter // for this project only
+  private final Chassis chassis;
 
   // service
   private final CommandSelector autoCmdSelector = new CommandSelector("Auto");
 
   public RobotContainer() {
     if (Constants.MODE.equals(Constants.Mode.REAL)) {
+      chassis = Chassis.createReal();
     } else if (Constants.MODE.equals(Constants.Mode.SIM)) {
+      chassis = Chassis.createSim();
     } else {
+      chassis = Chassis.createIO();
     }
 
     configureBindings();
