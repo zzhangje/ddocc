@@ -70,7 +70,7 @@ export default defineConfig({
               link: '/zh/tutorial/1'
             },
             {
-              text: '3. 创建第一个基元命令', 
+              text: '3. 创建第一个基本命令', 
               link: '/zh/tutorial/2'
             },
             {
