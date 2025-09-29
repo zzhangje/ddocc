@@ -1,9 +1,5 @@
 package frc.robot;
 
-import edu.wpi.first.math.geometry.Rotation2d;
-import edu.wpi.first.math.geometry.Rotation3d;
-import edu.wpi.first.math.geometry.Transform2d;
-import edu.wpi.first.math.geometry.Transform3d;
 import edu.wpi.first.wpilibj.RobotBase;
 import frc.lib.dashboard.LoggedTunableNumber;
 import frc.lib.interfaces.CanId;
@@ -26,22 +22,12 @@ public class Constants {
   }
 
   public final class Misc {
-    public static final Transform3d intake_T_coral =
-        new Transform3d(0.225, -0.15, 0.07, new Rotation3d(0.0, 0.0, Math.PI / 2));
-    public static final Transform3d ee_T_coral =
-        new Transform3d(0.225, -0.15, 0.5, new Rotation3d(0.0, 0.0, Math.PI / 2));
-    public static final Transform3d ee_T_algae =
-        new Transform3d(0.225, 0.0, 0.65, new Rotation3d());
-
-    public static final Transform2d leftSide =
-        new Transform2d(0.0, -0.2169, new Rotation2d(+Math.PI / 2.0));
-    public static final Transform2d rightSide =
-        new Transform2d(0.0, +0.2169, new Rotation2d(-Math.PI / 2.0));
-
     public static final LoggedTunableNumber omegaCOGHeightScaleFactor =
-        new LoggedTunableNumber("Swerve", "TeleopController/OmegaCOGHeightScaleFactor", 0.1);
+        new LoggedTunableNumber(
+            DebugGroup.CHASSIS, "TeleopController/OmegaCOGHeightScaleFactor", 0.1);
     public static final LoggedTunableNumber accelCOGHeightScaleFactor =
-        new LoggedTunableNumber("Swerve", "TeleopController/AccelCOGHeightScaleFactor", 0.1);
+        new LoggedTunableNumber(
+            DebugGroup.CHASSIS, "TeleopController/AccelCOGHeightScaleFactor", 0.1);
   }
 
   public final class AscopeAssets {
@@ -61,12 +47,9 @@ public class Constants {
   }
 
   public final class DebugGroup {
-    public static final String SWERVE = "Swerve";
-    public static final String CLIMBER = "Climber";
-    public static final String INTAKE = "Intake";
+    public static final String CHASSIS = "Chassis";
     public static final String ARM = "Arm";
     public static final String ODOMETRY = "Odometry";
-    public static final String AUTO = "Auto";
   }
 
   public final class Ports {

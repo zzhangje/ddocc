@@ -69,11 +69,8 @@ public class RobotContainer {
   private void configureDebugGroup() {
     TunableManager debugGroup = new TunableManager("DebugGroup");
     debugGroup.register(Constants.DebugGroup.ARM);
-    debugGroup.register(Constants.DebugGroup.SWERVE);
-    debugGroup.register(Constants.DebugGroup.AUTO);
+    debugGroup.register(Constants.DebugGroup.CHASSIS);
     debugGroup.register(Constants.DebugGroup.ODOMETRY);
-    debugGroup.register(Constants.DebugGroup.INTAKE);
-    debugGroup.register(Constants.DebugGroup.CLIMBER);
     new Trigger(Constants.IS_LIVE_DEBUG).onTrue(debugGroup.run()).onFalse(debugGroup.stop());
   }
 
