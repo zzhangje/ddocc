@@ -16,8 +16,7 @@ public class TrajectorySet {
   // public final AllianceValue<Trajectory<SwerveSample>> ij2Net;
   // public final AllianceValue<Trajectory<SwerveSample>> gh2Net;
 
-  public TrajectorySet() {
-  }
+  public TrajectorySet() {}
 
   private AllianceValue<Trajectory<DifferentialSample>> loadTrajectory(String name) {
     var trajectory = Choreo.loadTrajectory(name);
