@@ -1,7 +1,6 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.RobotBase;
-import frc.lib.dashboard.LoggedTunableNumber;
 import frc.lib.interfaces.CanId;
 import java.util.function.BooleanSupplier;
 
@@ -21,14 +20,7 @@ public class Constants {
     REPLAY
   }
 
-  public final class Misc {
-    public static final LoggedTunableNumber omegaCOGHeightScaleFactor =
-        new LoggedTunableNumber(
-            DebugGroup.CHASSIS, "TeleopController/OmegaCOGHeightScaleFactor", 0.1);
-    public static final LoggedTunableNumber accelCOGHeightScaleFactor =
-        new LoggedTunableNumber(
-            DebugGroup.CHASSIS, "TeleopController/AccelCOGHeightScaleFactor", 0.1);
-  }
+  public final class Misc {}
 
   public final class AscopeAssets {
     public static final int CHASSIS = 0;
@@ -38,7 +30,7 @@ public class Constants {
 
   public final class DebugGroup {
     public static final String CHASSIS = "Chassis";
-    public static final String ARM = "Arm";
+    public static final String INTAKE = "Intake";
     public static final String ODOMETRY = "Odometry";
   }
 
@@ -59,10 +51,7 @@ public class Constants {
       public static final CanId GROUND_INTAKE_PIVOT = new CanId(1, SUPERSTRUCTURE_CANIVORE_BUS);
     }
 
-    public static final class Digital {
-      public static final int GROUND_INTAKE_BEAM_BREAK = 9;
-      public static final int CLIMBER_BEAM_BREAK = 2;
-    }
+    public static final class Digital {}
 
     public static final class Joystick {
       public static final int DRIVER = 0;

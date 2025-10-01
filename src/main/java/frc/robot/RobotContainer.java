@@ -6,6 +6,7 @@ package frc.robot;
 
 import edu.wpi.first.math.geometry.Rotation3d;
 import edu.wpi.first.math.geometry.Transform3d;
+import edu.wpi.first.math.util.Units;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -22,6 +23,7 @@ import frc.reefscape.TrajectorySet;
 import frc.robot.Constants.AscopeAssets;
 import frc.robot.Constants.Ports;
 import frc.robot.subsystems.chassis.Chassis;
+import frc.robot.subsystems.intake.Intake;
 import lombok.Getter;
 
 public class RobotContainer {
@@ -35,6 +37,8 @@ public class RobotContainer {
   // subsystem
   @Getter // for this project only
   private final Chassis chassis;
+  @Getter // for this project only
+  private final Intake intake;
 
   // service
   private final CommandSelector autoCmdSelector = new CommandSelector("Auto");
@@ -45,8 +49,10 @@ public class RobotContainer {
   public RobotContainer() {
     if (Constants.MODE.equals(Constants.Mode.REAL)) {
       chassis = Chassis.createReal();
+      intake = Intake.createReal();
     } else if (Constants.MODE.equals(Constants.Mode.SIM)) {
       chassis = Chassis.createSim();
+      intake = Intake.createSim();
 
       GamePieceVisualizer coral =
           new GamePieceVisualizer(
@@ -62,6 +68,7 @@ public class RobotContainer {
       configureSimulation(visualizer, coral);
     } else {
       chassis = Chassis.createIO();
+      intake = Intake.createIO();
     }
 
     configureBindings();
@@ -95,8 +102,8 @@ public class RobotContainer {
 
   private void configureDebugGroup() {
     TunableManager debugGroup = new TunableManager("DebugGroup");
-    debugGroup.register(Constants.DebugGroup.ARM);
     debugGroup.register(Constants.DebugGroup.CHASSIS);
+    debugGroup.register(Constants.DebugGroup.INTAKE);
     debugGroup.register(Constants.DebugGroup.ODOMETRY);
     new Trigger(Constants.IS_LIVE_DEBUG).onTrue(debugGroup.run()).onFalse(debugGroup.stop());
   }
@@ -111,12 +118,20 @@ public class RobotContainer {
         "chassis",
         "intake",
         AscopeAssets.INTAKE,
-        () -> new Transform3d(0.0, 0.1225, 0.2695, new Rotation3d(1.0, 0.0, 0.0)));
+        () ->
+            new Transform3d(
+                0.0,
+                0.1225,
+                0.2695,
+                new Rotation3d(-Units.degreesToRadians(intake.getPivotDegree()), Math.PI, 0.0)));
     visualizer.registerVisualizedComponent(
         "intake",
         "coral",
         AscopeAssets.CORAL,
-        () -> new Transform3d(-0.075, 0.205, -0.075, new Rotation3d(0.0, 0.0, 0.0)));
+        () ->
+            s_hasCoral
+                ? new Transform3d(-0.095, 0.205, -0.075, new Rotation3d(0.0, 0.0, 0.0))
+                : new Transform3d(1e9, 1e9, 1e9, new Rotation3d()));
     visualizer.print();
   }
 

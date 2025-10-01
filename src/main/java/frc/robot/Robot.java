@@ -178,6 +178,13 @@ public class Robot extends LoggedRobot {
             5.0
                 * Math.abs(robotContainer.getDriver().getLeftY())
                 * robotContainer.getDriver().getLeftY());
+
+    robotContainer
+        .getIntake()
+        .setRollerVoltage(robotContainer.getDriver().getLeftTriggerAxis() - 0.5);
+    robotContainer
+        .getIntake()
+        .setPivotDegree(120 * robotContainer.getDriver().getRightTriggerAxis());
   }
 
   @Override
