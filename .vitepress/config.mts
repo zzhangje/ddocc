@@ -34,7 +34,7 @@ export default defineConfig({
           link: '/',
           items: [
             {
-              text: '1. Software Setup and Simulation',
+              text: '1. Setup and Quick Start',
               link: '/tutorial/1'
             },
             {
@@ -42,11 +42,11 @@ export default defineConfig({
               link: '/tutorial/2'
             },
             {
-              text: '3. Create a Primitive Command',
+              text: '3. Create a Teleop Command',
               link: '/tutorial/3'
             },
             {
-              text: '4. Compose a Complex Command',
+              text: '4. Create an Auto Command',
               link: '/tutorial/4'
             },
             {
@@ -70,11 +70,11 @@ export default defineConfig({
               link: '/zh/tutorial/2'
             },
             {
-              text: '3. 创建第一个基本命令',
+              text: '3. 创建一个遥控命令',
               link: '/zh/tutorial/3'
             },
             {
-              text: '4. 组建一个复杂的命令',
+              text: '4. 创建一个自动命令',
               link: '/zh/tutorial/4'
             },
             {
