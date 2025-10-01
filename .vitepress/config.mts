@@ -22,7 +22,7 @@ export default defineConfig({
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     logo: '/hammer.png',
-    
+
     nav: [
       { text: 'Home', link: '/' },
     ],
@@ -30,27 +30,27 @@ export default defineConfig({
     sidebar: {
       '/': [
         {
-          text: 'Tutorial', 
+          text: 'Tutorial',
           link: '/',
           items: [
             {
-              text: '1. Software Setup and Simulate', 
+              text: '1. Software Setup and Simulation',
               link: '/tutorial/1'
             },
             {
-              text: '2. Create Your First Subsystem', 
+              text: '2. Create Your First Subsystem',
               link: '/tutorial/2'
             },
             {
-              text: '3. Create a Primitive Command', 
+              text: '3. Create a Primitive Command',
               link: '/tutorial/3'
             },
             {
-              text: '4. Combine a Complex Command', 
+              text: '4. Combine a Complex Command',
               link: '/tutorial/4'
             },
             {
-              text: '5. Orchestrate an Autonomous', 
+              text: '5. Orchestrate an Autonomous',
               link: '/tutorial/5'
             }
           ]
@@ -58,27 +58,27 @@ export default defineConfig({
       ],
       '/zh/': [
         {
-          text: '系列教程', 
+          text: '系列教程',
           link: '/zh/',
           items: [
             {
-              text: '1. 软件配置和仿真运行', 
+              text: '1. 软件配置和仿真运行',
               link: '/zh/tutorial/1'
             },
             {
-              text: '2. 创建第一个子系统', 
+              text: '2. 创建第一个子系统',
               link: '/zh/tutorial/2'
             },
             {
-              text: '3. 创建第一个基本命令', 
+              text: '3. 创建第一个基本命令',
               link: '/zh/tutorial/3'
             },
             {
-              text: '4. 组合一个复杂的命令', 
+              text: '4. 组合一个复杂的命令',
               link: '/zh/tutorial/4'
             },
             {
-              text: '5. 编排一个自动程序', 
+              text: '5. 编排一个自动程序',
               link: '/zh/tutorial/5'
             }
           ]
