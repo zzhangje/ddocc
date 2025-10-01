@@ -96,7 +96,7 @@ public class RobotContainer {
 
   private void configureBindings() {
     chassis.setDefaultCommand(
-        new ChassisTeleop(chassis, () -> driver.getLeftY(), () -> driver.getRightX()));
+        new ChassisTeleop(chassis, () -> -driver.getLeftY(), () -> -driver.getRightX()));
     intake.setDefaultCommand(
         new IntakeTeleop(
             intake,
@@ -168,7 +168,7 @@ public class RobotContainer {
         Visualizer.BASE_FRAME,
         "chassis",
         AscopeAssets.CHASSIS,
-        () -> new Transform3d(0.0, 0.0, 0.095, new Rotation3d(Math.PI / 2.0, 0.0, -Math.PI / 2.0)));
+        () -> new Transform3d(0.0, 0.0, 0.095, new Rotation3d(Math.PI / 2.0, 0.0, Math.PI / 2.0)));
     visualizer.registerVisualizedComponent(
         "chassis",
         "intake",
