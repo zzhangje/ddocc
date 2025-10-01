@@ -4,17 +4,22 @@
 
 package frc.robot;
 
+import edu.wpi.first.math.geometry.Rotation3d;
+import edu.wpi.first.math.geometry.Transform3d;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
+import frc.lib.math.PoseUtil;
 import frc.lib.service.CommandSelector;
 import frc.lib.service.GamePieceVisualizer;
 import frc.lib.service.TunableManager;
 import frc.lib.service.Visualizer;
+import frc.reefscape.Field;
 import frc.reefscape.TrajectorySet;
+import frc.robot.Constants.AscopeAssets;
 import frc.robot.Constants.Ports;
 import frc.robot.subsystems.chassis.Chassis;
 import lombok.Getter;
@@ -34,11 +39,26 @@ public class RobotContainer {
   // service
   private final CommandSelector autoCmdSelector = new CommandSelector("Auto");
 
+  // state
+  private boolean s_hasCoral = true;
+
   public RobotContainer() {
     if (Constants.MODE.equals(Constants.Mode.REAL)) {
       chassis = Chassis.createReal();
     } else if (Constants.MODE.equals(Constants.Mode.SIM)) {
       chassis = Chassis.createSim();
+      
+      GamePieceVisualizer coral =
+          new GamePieceVisualizer(
+              "Coral",
+              0.5,
+              1.0,
+              PoseUtil.repeat(Field.PRESET_CORAL_POSES, 5),
+              PoseUtil.tolist(Field.Reef.CORAL_POSES),
+              (s_hasCoral ? 1 : 0));
+      Visualizer visualizer = new Visualizer();
+      configureVisualization(visualizer);
+      configureSimulation(visualizer, coral);
     } else {
       chassis = Chassis.createIO();
     }
@@ -71,7 +91,7 @@ public class RobotContainer {
   }
 
   private void configureSimulation(
-      Visualizer visualizer, GamePieceVisualizer coral, GamePieceVisualizer algae) {}
+      Visualizer visualizer, GamePieceVisualizer coral) {}
 
   private void configureDebugGroup() {
     TunableManager debugGroup = new TunableManager("DebugGroup");
@@ -82,6 +102,15 @@ public class RobotContainer {
   }
 
   private void configureVisualization(Visualizer visualizer) {
+    visualizer.registerVisualizedComponent(Visualizer.BASE_FRAME, "chassis", AscopeAssets.CHASSIS, 
+      ()->new Transform3d(0.0, 0.0, 0.095, new Rotation3d(Math.PI / 2.0, 0.0 , - Math.PI / 2.0))
+    );
+    visualizer.registerVisualizedComponent("chassis", "intake", AscopeAssets.INTAKE, 
+      ()->new Transform3d(0.0, 0.1225,0.2695, new Rotation3d(1.0, 0.0, 0.0))
+    );
+    visualizer.registerVisualizedComponent("intake", "coral", AscopeAssets.CORAL, 
+      ()->new Transform3d(-0.075, 0.205, -0.075, new Rotation3d(0.0, 0.0, 0.0))
+    );
     visualizer.print();
   }
 

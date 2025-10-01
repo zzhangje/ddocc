@@ -32,6 +32,8 @@ public class Constants {
 
   public final class AscopeAssets {
     public static final int CHASSIS = 0;
+    public static final int INTAKE = 1;
+    public static final int CORAL = 2;
   }
 
   public final class DebugGroup {

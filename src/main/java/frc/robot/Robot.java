@@ -173,11 +173,11 @@ public class Robot extends LoggedRobot {
         .getChassis()
         .setWheelsVelocities(
             5.0
-                * Math.abs(robotContainer.getDriver().getLeftY())
-                * robotContainer.getDriver().getLeftY(),
-            5.0
                 * Math.abs(robotContainer.getDriver().getRightY())
-                * robotContainer.getDriver().getRightY());
+                * robotContainer.getDriver().getRightY(),
+                5.0
+                    * Math.abs(robotContainer.getDriver().getLeftY())
+                    * robotContainer.getDriver().getLeftY());
   }
 
   @Override
