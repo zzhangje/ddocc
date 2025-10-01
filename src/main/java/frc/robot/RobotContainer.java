@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.lib.math.PoseUtil;
@@ -25,6 +26,7 @@ import frc.robot.Constants.AscopeAssets;
 import frc.robot.Constants.Misc;
 import frc.robot.Constants.Ports;
 import frc.robot.commands.ChassisTeleop;
+import frc.robot.commands.FollowTrajectory;
 import frc.robot.commands.ForceIdle;
 import frc.robot.commands.PickCoral;
 import frc.robot.commands.ScoreCoral;
@@ -116,6 +118,16 @@ public class RobotContainer {
     new Trigger(() -> DriverStation.isAutonomousEnabled())
         .onTrue(autoCmdSelector.stop())
         .onFalse(autoCmdSelector.run());
+
+    autoCmdSelector.addCommand(
+        "Tutorial",
+        new SequentialCommandGroup(
+            odometry.resetPoseCommand(() -> Field.LEFT_START_POSE),
+            new FollowTrajectory(chassis, () -> trajectorySet.score1.get()),
+            new ScoreCoral(intake),
+            new FollowTrajectory(chassis, () -> trajectorySet.leave1.get()),
+            new FollowTrajectory(chassis, () -> trajectorySet.collect1.get())
+                .withDeadline(new PickCoral(intake))));
   }
 
   private void configureSimulation(Visualizer visualizer, GamePieceVisualizer coral) {

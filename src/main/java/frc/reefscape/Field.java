@@ -22,7 +22,7 @@ public final class Field {
   public static final double WIDTH = 8.052;
 
   public static final Pose2d LEFT_START_POSE =
-      new Pose2d(7.13088474273682, 5.654391765594482, Rotation2d.kZero);
+      new Pose2d(7.13088474273682, 5.654391765594482, Rotation2d.k180deg);
   public static final Pose2d MID_START_POSE =
       new Pose2d(7.13088474273682, 4.016828536987305, Rotation2d.kCCW_90deg);
   public static final Pose2d RIGHT_START_POSE =

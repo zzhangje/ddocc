@@ -54,7 +54,11 @@ public class GenericWheelIOSim implements GenericWheelIO {
 
   @Override
   public void setVelocity(double velRadPerSec, double torqueAmp) {
-    setVoltage(pid.calculate(sim.getAngularVelocityRadPerSec(), velRadPerSec));
+    // setVoltage(pid.calculate(sim.getAngularVelocityRadPerSec(), velRadPerSec));
+    sim.setState(
+        sim.getAngularPositionRad()
+            + (velRadPerSec + sim.getAngularVelocityRadPerSec()) / 2.0 * Constants.LOOP_PERIOD_SEC,
+        velRadPerSec);
   }
 
   @Override

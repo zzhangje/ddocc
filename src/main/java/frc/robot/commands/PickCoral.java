@@ -19,7 +19,7 @@ public class PickCoral extends Command {
 
   @Override
   public void execute() {
-    if(Math.abs(intake.getPivotDegree() - 90) < 5.0) {
+    if (Math.abs(intake.getPivotDegree() - 90) < 5.0) {
       intake.setRollerVoltage(-1);
     }
   }
