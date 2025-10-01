@@ -4,18 +4,13 @@ import com.ctre.phoenix6.configs.TalonFXConfiguration;
 import edu.wpi.first.math.system.plant.DCMotor;
 import edu.wpi.first.math.util.Units;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.lib.dashboard.Alert;
-import frc.lib.dashboard.LoggedTunableNumber;
 import frc.lib.interfaces.motor.GenericArmIO;
-import frc.lib.interfaces.motor.GenericArmIOInputsAutoLogged;
 import frc.lib.interfaces.motor.GenericArmIOKraken;
 import frc.lib.interfaces.motor.GenericArmIOSim;
 import frc.lib.interfaces.motor.GenericRollerIO;
-import frc.lib.interfaces.motor.GenericRollerIOInputsAutoLogged;
 import frc.lib.interfaces.motor.GenericRollerIOKraken;
 import frc.lib.interfaces.motor.GenericRollerIOSim;
 import frc.robot.Constants.Ports.Can;
-import org.littletonrobotics.junction.Logger;
 
 public class Intake extends SubsystemBase {
   public double getPivotDegree() {
