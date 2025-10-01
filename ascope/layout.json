@@ -1,13 +1,13 @@
 {
   "hubs": [
     {
-      "x": 738,
-      "y": 113,
+      "x": 960,
+      "y": 0,
       "width": 960,
       "height": 1032,
       "state": {
         "sidebar": {
-          "width": 301,
+          "width": 186,
           "expanded": [
             "/DriverStation/Joystick0/POVs",
             "/DriverStation/Joystick0/AxisValues",
@@ -151,7 +151,6 @@
             "/RealOutputs/Swerve/LaserController",
             "/RealOutputs",
             "/RealOutputs/Swerve",
-            "/AdvantageKit/RealOutputs",
             "/AdvantageKit/RealOutputs/EndEffector",
             "/AdvantageKit/RollerSensor",
             "/AdvantageKit/RealOutputs/Swerve/ReefAlignController",
@@ -189,9 +188,9 @@
             "/AdvantageKit/RealOutputs/Odometry/WheeledPose/translation",
             "/AdvantageKit/RealOutputs/Odometry/WheeledPose",
             "/AdvantageKit/RealOutputs/Odometry/WheeledPose/rotation",
-            "/AdvantageKit/Chassis Right",
             "/Tuning",
-            "/AdvantageKit/RealOutputs/Visualization"
+            "/AdvantageKit/RealOutputs/Visualization",
+            "/AdvantageKit/RealOutputs/Chassis/FollowTrajectory"
           ]
         },
         "tabs": {
@@ -391,6 +390,16 @@
                     "options": {
                       "variant": "Coral"
                     }
+                  },
+                  {
+                    "type": "trajectory",
+                    "logKey": "NT:/AdvantageKit/RealOutputs/Chassis/FollowTrajectory/TrajectoryPoses",
+                    "logType": "Pose2d[]",
+                    "visible": true,
+                    "options": {
+                      "color": "#00ffff",
+                      "size": "normal"
+                    }
                   }
                 ],
                 "game": "2025 Field (AndyMark)",
@@ -401,17 +410,17 @@
                 "cameraIndex": -1,
                 "orbitFov": 50,
                 "cameraPosition": [
-                  4.0700865562533455,
-                  2.9063940524399636,
-                  -7.095128674921458
+                  -12.048136375694732,
+                  10.964469627846784,
+                  -7.23492300538221
                 ],
                 "cameraTarget": [
-                  3.3148421326685,
-                  0.7201924092494578,
-                  -0.007213729268098214
+                  -7.2472548605248654,
+                  3.4898753074311997,
+                  -2.522075409775221
                 ]
               },
-              "controlsHeight": 321
+              "controlsHeight": 0
             },
             {
               "type": 3,

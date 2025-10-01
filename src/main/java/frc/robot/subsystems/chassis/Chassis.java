@@ -20,6 +20,11 @@ public class Chassis extends SubsystemBase {
     rightIO.setVelocity(rightVelocity / ChassisConfig.WHEEL_RADIUS_METER, 0.0);
   }
 
+  public void stop() {
+    leftIO.stop();
+    rightIO.stop();
+  }
+
   static {
     final var driveGains = ChassisConfig.getDriveGains();
     ChassisConfig.driveKp.initDefault(driveGains.kp());

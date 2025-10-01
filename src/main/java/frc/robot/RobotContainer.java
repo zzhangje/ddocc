@@ -125,9 +125,14 @@ public class RobotContainer {
             odometry.resetPoseCommand(() -> Field.LEFT_START_POSE),
             new FollowTrajectory(chassis, () -> trajectorySet.score1.get()),
             new ScoreCoral(intake),
-            new FollowTrajectory(chassis, () -> trajectorySet.leave1.get()),
             new FollowTrajectory(chassis, () -> trajectorySet.collect1.get())
-                .withDeadline(new PickCoral(intake))));
+                .alongWith(new PickCoral(intake)),
+            new FollowTrajectory(chassis, () -> trajectorySet.score2.get()),
+            new ScoreCoral(intake),
+            new FollowTrajectory(chassis, () -> trajectorySet.collect2.get())
+                .alongWith(new PickCoral(intake)),
+            new FollowTrajectory(chassis, () -> trajectorySet.score3.get()),
+            new ScoreCoral(intake)));
   }
 
   private void configureSimulation(Visualizer visualizer, GamePieceVisualizer coral) {

@@ -7,8 +7,10 @@ import frc.lib.dashboard.AllianceValue;
 
 public class TrajectorySet {
   public final AllianceValue<Trajectory<DifferentialSample>> score1 = loadTrajectory("score1");
-  public final AllianceValue<Trajectory<DifferentialSample>> leave1 = loadTrajectory("leave1");
+  public final AllianceValue<Trajectory<DifferentialSample>> score2 = loadTrajectory("score2");
+  public final AllianceValue<Trajectory<DifferentialSample>> score3 = loadTrajectory("score3");
   public final AllianceValue<Trajectory<DifferentialSample>> collect1 = loadTrajectory("collect1");
+  public final AllianceValue<Trajectory<DifferentialSample>> collect2 = loadTrajectory("collect2");
 
   public TrajectorySet() {}
 

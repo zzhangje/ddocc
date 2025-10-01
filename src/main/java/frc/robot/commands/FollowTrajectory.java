@@ -44,6 +44,6 @@ public class FollowTrajectory extends Command {
   @Override
   public void end(boolean interrupted) {
     timer.stop();
-    chassis.setWheelsVelocities(0, 0);
+    chassis.stop();
   }
 }
