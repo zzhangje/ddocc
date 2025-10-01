@@ -126,13 +126,11 @@ public class RobotContainer {
             new FollowTrajectory(chassis, () -> trajectorySet.score1.get()),
             new ScoreCoral(intake),
             new FollowTrajectory(chassis, () -> trajectorySet.collect1.get())
-                .alongWith(new PickCoral(intake)),
-            new FollowTrajectory(chassis, () -> trajectorySet.score2.get()),
-            new ScoreCoral(intake),
-            new FollowTrajectory(chassis, () -> trajectorySet.collect2.get())
-                .alongWith(new PickCoral(intake)),
-            new FollowTrajectory(chassis, () -> trajectorySet.score3.get()),
-            new ScoreCoral(intake)));
+                .alongWith(new PickCoral(intake))
+            // TODO: follow `score2` and score
+            // TODO: follow `collect2` and collect
+            // TODO: follow `score3` and score
+            ));
   }
 
   private void configureSimulation(Visualizer visualizer, GamePieceVisualizer coral) {
