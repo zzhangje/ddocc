@@ -13,26 +13,22 @@ public class ScoreCoral extends Command {
 
   @Override
   public void initialize() {
-    intake.setPivotDegree(20);
+    // TODO: set the intake angle
   }
 
   @Override
   public void execute() {
-    if (Math.abs(intake.getPivotDegree() - 20) < 5.0) {
-      intake.setRollerVoltage(1);
-    } else {
-      intake.setRollerVoltage(0);
-    }
+    // TODO: wait for intake to arrive before starting the roller
   }
 
   @Override
   public void end(boolean interrupted) {
-    intake.setRollerVoltage(0);
-    intake.setPivotDegree(0);
+    // TODO: reset intake and stop the roller
   }
 
   @Override
   public boolean isFinished() {
-    return Math.abs(intake.getPivotDegree() - 20) < 5.0 && !intake.hasCoral();
+    // TODO: if the roller score the coral
+    return false;
   }
 }
