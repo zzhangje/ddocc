@@ -19,62 +19,34 @@ import org.littletonrobotics.junction.Logger;
 
 public class Intake extends SubsystemBase {
   public double getPivotDegree() {
-    return Units.radiansToDegrees(pivotInputs.positionRad);
+    // TODO: implement
+    return 0.0;
   }
 
   public void setPivotDegree(double degree) {
-    pivotIO.setPosition(Units.degreesToRadians(degree), 0.0);
+    // TODO: implement
   }
 
   public double getRollerVelocityRPM() {
-    return rollerInputs.velRadPerSec * 60.0 / (2.0 * Math.PI);
+    // TODO: implement
+    return 0.0;
   }
 
   public void setRollerVoltage(double voltage) {
-    rollerIO.setVoltage(voltage);
+    // TODO: implement
   }
 
   static {
-    final var pivotGains = IntakeConfig.getPivotGains();
-    IntakeConfig.pivotKp.initDefault(pivotGains.kp());
-    IntakeConfig.pivotKd.initDefault(pivotGains.kd());
-    IntakeConfig.pivotKs.initDefault(pivotGains.ks());
-    IntakeConfig.pivotKg.initDefault(pivotGains.kg());
+    // TODO: implement
   }
 
   private final GenericArmIO pivotIO;
   private final GenericRollerIO rollerIO;
-  private final GenericArmIOInputsAutoLogged pivotInputs = new GenericArmIOInputsAutoLogged();
-  private final GenericRollerIOInputsAutoLogged rollerInputs =
-      new GenericRollerIOInputsAutoLogged();
-  private final Alert pivotOfflineAlert =
-      new Alert("Intake Pivot Offline", Alert.AlertType.WARNING);
-  private final Alert rollerOfflineAlert =
-      new Alert("Intake Roller Offline", Alert.AlertType.WARNING);
+  // TODO: implement
 
   @Override
   public void periodic() {
-    pivotIO.updateInputs(pivotInputs);
-    rollerIO.updateInputs(rollerInputs);
-
-    Logger.processInputs("Intake Pivot", pivotInputs);
-    Logger.processInputs("Intake Roller", rollerInputs);
-
-    pivotOfflineAlert.set(!pivotInputs.connected);
-    rollerOfflineAlert.set(!rollerInputs.connected);
-
-    LoggedTunableNumber.ifChanged(
-        hashCode(),
-        () -> {
-          pivotIO.setPdf(
-              IntakeConfig.pivotKp.get(),
-              IntakeConfig.pivotKd.get(),
-              IntakeConfig.pivotKs.get(),
-              IntakeConfig.pivotKg.get());
-        },
-        IntakeConfig.pivotKp,
-        IntakeConfig.pivotKd,
-        IntakeConfig.pivotKs);
+    // TODO: implement
   }
 
   private Intake(GenericArmIO pivotIO, GenericRollerIO rollerIO) {
