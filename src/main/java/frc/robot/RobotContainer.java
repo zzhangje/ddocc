@@ -56,7 +56,7 @@ public class RobotContainer {
       intake = Intake.createReal();
     } else if (Constants.MODE.equals(Constants.Mode.SIM)) {
       chassis = Chassis.createSim();
-      intake = Intake.createSim();
+      intake = Intake.createSim(() -> s_hasCoral);
 
       GamePieceVisualizer coral =
           new GamePieceVisualizer(

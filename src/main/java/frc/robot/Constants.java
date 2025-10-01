@@ -56,7 +56,9 @@ public class Constants {
       public static final CanId GROUND_INTAKE_PIVOT = new CanId(1, SUPERSTRUCTURE_CANIVORE_BUS);
     }
 
-    public static final class Digital {}
+    public static final class Digital {
+      public static final int INTAKE_BEAM_BREAK = 0;
+    }
 
     public static final class Joystick {
       public static final int DRIVER = 0;

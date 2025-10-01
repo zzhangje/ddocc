@@ -14,7 +14,10 @@ import frc.lib.interfaces.motor.GenericRollerIO;
 import frc.lib.interfaces.motor.GenericRollerIOInputsAutoLogged;
 import frc.lib.interfaces.motor.GenericRollerIOKraken;
 import frc.lib.interfaces.motor.GenericRollerIOSim;
+import frc.lib.interfaces.sensor.digital.DigitalInputRio;
 import frc.robot.Constants.Ports.Can;
+import frc.robot.Constants.Ports.Digital;
+import java.util.function.BooleanSupplier;
 import org.littletonrobotics.junction.Logger;
 
 public class Intake extends SubsystemBase {
@@ -34,6 +37,10 @@ public class Intake extends SubsystemBase {
     rollerIO.setVoltage(voltage);
   }
 
+  public Boolean hasCoral() {
+    return hasCoralSupplier.getAsBoolean();
+  }
+
   static {
     final var pivotGains = IntakeConfig.getPivotGains();
     IntakeConfig.pivotKp.initDefault(pivotGains.kp());
@@ -51,6 +58,7 @@ public class Intake extends SubsystemBase {
       new Alert("Intake Pivot Offline", Alert.AlertType.WARNING);
   private final Alert rollerOfflineAlert =
       new Alert("Intake Roller Offline", Alert.AlertType.WARNING);
+  private final BooleanSupplier hasCoralSupplier;
 
   @Override
   public void periodic() {
@@ -77,9 +85,10 @@ public class Intake extends SubsystemBase {
         IntakeConfig.pivotKs);
   }
 
-  private Intake(GenericArmIO pivotIO, GenericRollerIO rollerIO) {
+  private Intake(GenericArmIO pivotIO, GenericRollerIO rollerIO, BooleanSupplier hasCoralSupplier) {
     this.pivotIO = pivotIO;
     this.rollerIO = rollerIO;
+    this.hasCoralSupplier = hasCoralSupplier;
   }
 
   public static Intake createReal() {
@@ -90,10 +99,11 @@ public class Intake extends SubsystemBase {
             IntakeConfig.getPivotConfig(),
             IntakeConfig.HOME_DEGREE),
         new GenericRollerIOKraken(
-            "Intake Roller", Can.GROUND_INTAKE_ROLLER, new TalonFXConfiguration()));
+            "Intake Roller", Can.GROUND_INTAKE_ROLLER, new TalonFXConfiguration()),
+        new DigitalInputRio(Digital.INTAKE_BEAM_BREAK));
   }
 
-  public static Intake createSim() {
+  public static Intake createSim(BooleanSupplier hasCoralSupplier) {
     return new Intake(
         new GenericArmIOSim(
             DCMotor.getFalcon500Foc(1),
@@ -103,10 +113,11 @@ public class Intake extends SubsystemBase {
             Units.degreesToRadians(IntakeConfig.MIN_DEGREE),
             Units.degreesToRadians(IntakeConfig.MAX_DEGREE),
             Units.degreesToRadians(IntakeConfig.HOME_DEGREE)),
-        new GenericRollerIOSim(DCMotor.getFalcon500(1), IntakeConfig.ROLLER_REDUCTION, 0.001));
+        new GenericRollerIOSim(DCMotor.getFalcon500(1), IntakeConfig.ROLLER_REDUCTION, 0.001),
+        hasCoralSupplier);
   }
 
   public static Intake createIO() {
-    return new Intake(new GenericArmIO() {}, new GenericRollerIO() {});
+    return new Intake(new GenericArmIO() {}, new GenericRollerIO() {}, () -> false);
   }
 }
