@@ -1,5 +1,7 @@
 package frc.robot;
 
+import edu.wpi.first.math.geometry.Rotation3d;
+import edu.wpi.first.math.geometry.Transform3d;
 import edu.wpi.first.wpilibj.RobotBase;
 import frc.lib.interfaces.CanId;
 import java.util.function.BooleanSupplier;
@@ -20,7 +22,10 @@ public class Constants {
     REPLAY
   }
 
-  public final class Misc {}
+  public final class Misc {
+    public static final Transform3d intake_T_coral =
+        new Transform3d(-0.095, 0.205, -0.075, new Rotation3d(0.0, 0.0, 0.0));
+  }
 
   public final class AscopeAssets {
     public static final int CHASSIS = 0;

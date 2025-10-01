@@ -4,6 +4,7 @@
 
 package frc.robot;
 
+import edu.wpi.first.math.geometry.Pose3d;
 import edu.wpi.first.math.geometry.Rotation3d;
 import edu.wpi.first.math.geometry.Transform3d;
 import edu.wpi.first.math.util.Units;
@@ -21,6 +22,7 @@ import frc.lib.service.Visualizer;
 import frc.reefscape.Field;
 import frc.reefscape.TrajectorySet;
 import frc.robot.Constants.AscopeAssets;
+import frc.robot.Constants.Misc;
 import frc.robot.Constants.Ports;
 import frc.robot.subsystems.chassis.Chassis;
 import frc.robot.subsystems.intake.Intake;
@@ -98,7 +100,48 @@ public class RobotContainer {
         .onFalse(autoCmdSelector.run());
   }
 
-  private void configureSimulation(Visualizer visualizer, GamePieceVisualizer coral) {}
+  private void configureSimulation(Visualizer visualizer, GamePieceVisualizer coral) {
+    new Trigger(() -> intake.getRollerVelocityRPM() < 0)
+        .whileTrue(
+            Commands.run(
+                    () -> {
+                      if (!s_hasCoral) {
+                        Boolean ret =
+                            coral.tryPick(
+                                new Pose3d(odometry.getEstimatedPose())
+                                    .plus(
+                                        visualizer
+                                            .getComponentTransform(AscopeAssets.INTAKE)
+                                            .plus(Misc.intake_T_coral)));
+                        if (ret) {
+                          s_hasCoral = true;
+                        }
+                      }
+                    })
+                .withName("Sim/Try Pick Coral"));
+
+    new Trigger(() -> intake.getRollerVelocityRPM() > 0)
+        .whileTrue(
+            Commands.runOnce(
+                    () -> {
+                      if (s_hasCoral) {
+                        Boolean ret =
+                            coral.tryScore(
+                                new Pose3d(odometry.getEstimatedPose())
+                                    .plus(
+                                        visualizer
+                                            .getComponentTransform(AscopeAssets.INTAKE)
+                                            .plus(Misc.intake_T_coral)));
+                        if (ret) {
+                          s_hasCoral = false;
+                        }
+                      }
+                    })
+                .withName("Sim/Try Score Coral"));
+
+    new Trigger(() -> s_hasCoral)
+        .onChange(joystickRumblerCommand(driver, 0.2, RumbleType.kBothRumble));
+  }
 
   private void configureDebugGroup() {
     TunableManager debugGroup = new TunableManager("DebugGroup");
@@ -128,10 +171,7 @@ public class RobotContainer {
         "intake",
         "coral",
         AscopeAssets.CORAL,
-        () ->
-            s_hasCoral
-                ? new Transform3d(-0.095, 0.205, -0.075, new Rotation3d(0.0, 0.0, 0.0))
-                : new Transform3d(1e9, 1e9, 1e9, new Rotation3d()));
+        () -> s_hasCoral ? Misc.intake_T_coral : new Transform3d(1e9, 1e9, 1e9, new Rotation3d()));
     visualizer.print();
   }
 
