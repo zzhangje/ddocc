@@ -24,6 +24,8 @@ import frc.reefscape.TrajectorySet;
 import frc.robot.Constants.AscopeAssets;
 import frc.robot.Constants.Misc;
 import frc.robot.Constants.Ports;
+import frc.robot.commands.ChassisTeleop;
+import frc.robot.commands.IntakeTeleop;
 import frc.robot.subsystems.chassis.Chassis;
 import frc.robot.subsystems.intake.Intake;
 import lombok.Getter;
@@ -92,7 +94,17 @@ public class RobotContainer {
         .withName("Joystick Rumbler");
   }
 
-  private void configureBindings() {}
+  private void configureBindings() {
+    chassis.setDefaultCommand(
+        new ChassisTeleop(chassis, () -> driver.getLeftY(), () -> driver.getRightX()));
+    intake.setDefaultCommand(
+        new IntakeTeleop(
+            intake,
+            () -> driver.getRightTriggerAxis() > 0.2,
+            () -> driver.getLeftTriggerAxis() > 0.2,
+            () -> driver.leftBumper().getAsBoolean(),
+            () -> driver.rightBumper().getAsBoolean()));
+  }
 
   private void configureAuto() {
     new Trigger(() -> DriverStation.isAutonomousEnabled())
