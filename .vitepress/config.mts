@@ -46,7 +46,7 @@ export default defineConfig({
               link: '/tutorial/3'
             },
             {
-              text: '4. Combine a Complex Command',
+              text: '4. Compose a Complex Command',
               link: '/tutorial/4'
             },
             {
