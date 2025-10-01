@@ -74,7 +74,7 @@ export default defineConfig({
               link: '/zh/tutorial/3'
             },
             {
-              text: '4. 组合一个复杂的命令',
+              text: '4. 组建一个复杂的命令',
               link: '/zh/tutorial/4'
             },
             {
