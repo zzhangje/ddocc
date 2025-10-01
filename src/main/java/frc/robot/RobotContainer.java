@@ -25,7 +25,9 @@ import frc.robot.Constants.AscopeAssets;
 import frc.robot.Constants.Misc;
 import frc.robot.Constants.Ports;
 import frc.robot.commands.ChassisTeleop;
-import frc.robot.commands.IntakeTeleop;
+import frc.robot.commands.ForceIdle;
+import frc.robot.commands.PickCoral;
+import frc.robot.commands.ScoreCoral;
 import frc.robot.subsystems.chassis.Chassis;
 import frc.robot.subsystems.intake.Intake;
 import lombok.Getter;
@@ -61,8 +63,8 @@ public class RobotContainer {
       GamePieceVisualizer coral =
           new GamePieceVisualizer(
               "Coral",
+              0.3,
               0.5,
-              1.0,
               PoseUtil.repeat(Field.PRESET_CORAL_POSES, 5),
               PoseUtil.tolist(Field.Reef.CORAL_POSES),
               (s_hasCoral ? 1 : 0));
@@ -97,13 +99,17 @@ public class RobotContainer {
   private void configureBindings() {
     chassis.setDefaultCommand(
         new ChassisTeleop(chassis, () -> -driver.getLeftY(), () -> -driver.getRightX()));
-    intake.setDefaultCommand(
-        new IntakeTeleop(
-            intake,
-            () -> driver.getRightTriggerAxis() > 0.2,
-            () -> driver.getLeftTriggerAxis() > 0.2,
-            () -> driver.leftBumper().getAsBoolean(),
-            () -> driver.rightBumper().getAsBoolean()));
+    // intake.setDefaultCommand(
+    //     new IntakeTeleop(
+    //         intake,
+    //         () -> driver.getRightTriggerAxis() > 0.2,
+    //         () -> driver.getLeftTriggerAxis() > 0.2,
+    //         () -> driver.leftBumper().getAsBoolean(),
+    //         () -> driver.rightBumper().getAsBoolean()));
+
+    driver.a().onTrue(new ForceIdle(intake));
+    driver.x().onTrue(new PickCoral(intake));
+    driver.b().onTrue(new ScoreCoral(intake));
   }
 
   private void configureAuto() {
@@ -134,7 +140,7 @@ public class RobotContainer {
 
     new Trigger(() -> intake.getRollerVelocityRPM() > 0)
         .whileTrue(
-            Commands.runOnce(
+            Commands.run(
                     () -> {
                       if (s_hasCoral) {
                         Boolean ret =

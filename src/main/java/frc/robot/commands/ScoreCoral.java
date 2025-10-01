@@ -1,38 +1,38 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.subsystems.intake.Intake;
 
 public class ScoreCoral extends Command {
   private final Intake intake;
-  private final Command command;
 
   public ScoreCoral(Intake intake) {
     this.intake = intake;
-    this.command = new SequentialCommandGroup(
-      // TODO: add commands here
-    );
     addRequirements(intake);
   }
 
   @Override
   public void initialize() {
-    command.initialize();
+    intake.setPivotDegree(20);
   }
 
   @Override
   public void execute() {
-    command.execute();
+    if (Math.abs(intake.getPivotDegree() - 20) < 5.0) {
+      intake.setRollerVoltage(1);
+    } else {
+      intake.setRollerVoltage(0);
+    }
   }
 
   @Override
   public void end(boolean interrupted) {
-    command.end(interrupted);
+    intake.setRollerVoltage(0);
+    intake.setPivotDegree(0);
   }
 
   @Override
   public boolean isFinished() {
-    return command.isFinished();
+    return Math.abs(intake.getPivotDegree() - 20) < 5.0 && !intake.hasCoral();
   }
 }
