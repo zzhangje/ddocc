@@ -28,7 +28,7 @@ public class IntakeTeleop extends Command {
   @Override
   public void execute() {
     // TODO: implement intake teleop control
-    
+
     // when both buttons are pressed, do nothing
     // when inject button is pressed, intake
     // when eject button is pressed, outtake
