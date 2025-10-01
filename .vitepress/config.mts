@@ -50,7 +50,7 @@ export default defineConfig({
               link: '/tutorial/4'
             },
             {
-              text: '5. Orchestrate an Autonomous',
+              text: '5. Compose an Autonomous Program',
               link: '/tutorial/5'
             }
           ]
@@ -78,7 +78,7 @@ export default defineConfig({
               link: '/zh/tutorial/4'
             },
             {
-              text: '5. 编排一个自动程序',
+              text: '5. 编写一个自动程序',
               link: '/zh/tutorial/5'
             }
           ]
