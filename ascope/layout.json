@@ -1,13 +1,13 @@
 {
   "hubs": [
     {
-      "x": 1024,
-      "y": 0,
-      "width": 1024,
-      "height": 1232,
+      "x": 738,
+      "y": 113,
+      "width": 960,
+      "height": 1032,
       "state": {
         "sidebar": {
-          "width": 160,
+          "width": 301,
           "expanded": [
             "/DriverStation/Joystick0/POVs",
             "/DriverStation/Joystick0/AxisValues",
@@ -171,10 +171,8 @@
             "/AdvantageKit/RealOutputs/GamePiece",
             "/AdvantageKit/RealOutputs/GamePiece/Algae",
             "/AdvantageKit/RealOutputs/Visualization/Algae",
-            "/AdvantageKit/RealOutputs/Visualization/Coral",
             "/Tuning/Arm",
             "/AdvantageKit/RealOutputs/Swerve/ProcessorAlignController",
-            "/AdvantageKit",
             "/AdvantageKit/RealOutputs/Swerve/NetAlignController",
             "/AdvantageKit/ObjectDetectionVision",
             "/AdvantageKit/ObjectDetectionVision/FrontMid/GamePieceObservations",
@@ -192,7 +190,8 @@
             "/AdvantageKit/RealOutputs/Odometry/WheeledPose",
             "/AdvantageKit/RealOutputs/Odometry/WheeledPose/rotation",
             "/AdvantageKit/Chassis Right",
-            "/Tuning"
+            "/Tuning",
+            "/AdvantageKit/RealOutputs/Visualization"
           ]
         },
         "tabs": {
@@ -365,7 +364,32 @@
                     "logType": "Pose2d",
                     "visible": true,
                     "options": {
-                      "model": "KitBot"
+                      "model": "DDOCC Tutorial"
+                    }
+                  },
+                  {
+                    "type": "component",
+                    "logKey": "NT:/AdvantageKit/RealOutputs/Visualization/Components",
+                    "logType": "Pose3d[]",
+                    "visible": true,
+                    "options": {}
+                  },
+                  {
+                    "type": "gamePiece",
+                    "logKey": "NT:/AdvantageKit/RealOutputs/Visualization/Coral/scoredGamePiecePose",
+                    "logType": "Pose3d[]",
+                    "visible": true,
+                    "options": {
+                      "variant": "Coral"
+                    }
+                  },
+                  {
+                    "type": "gamePiece",
+                    "logKey": "NT:/AdvantageKit/RealOutputs/Visualization/Coral/pickableGamePiecePose",
+                    "logType": "Pose3d[]",
+                    "visible": true,
+                    "options": {
+                      "variant": "Coral"
                     }
                   }
                 ],
@@ -377,14 +401,14 @@
                 "cameraIndex": -1,
                 "orbitFov": 50,
                 "cameraPosition": [
-                  -10.234849334014314,
-                  8.17526818562572,
-                  -5.287002548059442
+                  4.0700865562533455,
+                  2.9063940524399636,
+                  -7.095128674921458
                 ],
                 "cameraTarget": [
-                  -3.231145249418479,
-                  1.940924557586922,
-                  -0.9135937382635683
+                  3.3148421326685,
+                  0.7201924092494578,
+                  -0.007213729268098214
                 ]
               },
               "controlsHeight": 321

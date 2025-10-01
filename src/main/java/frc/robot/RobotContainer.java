@@ -47,7 +47,7 @@ public class RobotContainer {
       chassis = Chassis.createReal();
     } else if (Constants.MODE.equals(Constants.Mode.SIM)) {
       chassis = Chassis.createSim();
-      
+
       GamePieceVisualizer coral =
           new GamePieceVisualizer(
               "Coral",
@@ -56,6 +56,7 @@ public class RobotContainer {
               PoseUtil.repeat(Field.PRESET_CORAL_POSES, 5),
               PoseUtil.tolist(Field.Reef.CORAL_POSES),
               (s_hasCoral ? 1 : 0));
+
       Visualizer visualizer = new Visualizer();
       configureVisualization(visualizer);
       configureSimulation(visualizer, coral);
@@ -90,8 +91,7 @@ public class RobotContainer {
         .onFalse(autoCmdSelector.run());
   }
 
-  private void configureSimulation(
-      Visualizer visualizer, GamePieceVisualizer coral) {}
+  private void configureSimulation(Visualizer visualizer, GamePieceVisualizer coral) {}
 
   private void configureDebugGroup() {
     TunableManager debugGroup = new TunableManager("DebugGroup");
@@ -102,15 +102,21 @@ public class RobotContainer {
   }
 
   private void configureVisualization(Visualizer visualizer) {
-    visualizer.registerVisualizedComponent(Visualizer.BASE_FRAME, "chassis", AscopeAssets.CHASSIS, 
-      ()->new Transform3d(0.0, 0.0, 0.095, new Rotation3d(Math.PI / 2.0, 0.0 , - Math.PI / 2.0))
-    );
-    visualizer.registerVisualizedComponent("chassis", "intake", AscopeAssets.INTAKE, 
-      ()->new Transform3d(0.0, 0.1225,0.2695, new Rotation3d(1.0, 0.0, 0.0))
-    );
-    visualizer.registerVisualizedComponent("intake", "coral", AscopeAssets.CORAL, 
-      ()->new Transform3d(-0.075, 0.205, -0.075, new Rotation3d(0.0, 0.0, 0.0))
-    );
+    visualizer.registerVisualizedComponent(
+        Visualizer.BASE_FRAME,
+        "chassis",
+        AscopeAssets.CHASSIS,
+        () -> new Transform3d(0.0, 0.0, 0.095, new Rotation3d(Math.PI / 2.0, 0.0, -Math.PI / 2.0)));
+    visualizer.registerVisualizedComponent(
+        "chassis",
+        "intake",
+        AscopeAssets.INTAKE,
+        () -> new Transform3d(0.0, 0.1225, 0.2695, new Rotation3d(1.0, 0.0, 0.0)));
+    visualizer.registerVisualizedComponent(
+        "intake",
+        "coral",
+        AscopeAssets.CORAL,
+        () -> new Transform3d(-0.075, 0.205, -0.075, new Rotation3d(0.0, 0.0, 0.0)));
     visualizer.print();
   }
 

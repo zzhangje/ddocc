@@ -175,9 +175,9 @@ public class Robot extends LoggedRobot {
             5.0
                 * Math.abs(robotContainer.getDriver().getRightY())
                 * robotContainer.getDriver().getRightY(),
-                5.0
-                    * Math.abs(robotContainer.getDriver().getLeftY())
-                    * robotContainer.getDriver().getLeftY());
+            5.0
+                * Math.abs(robotContainer.getDriver().getLeftY())
+                * robotContainer.getDriver().getLeftY());
   }
 
   @Override
