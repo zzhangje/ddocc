@@ -1,12 +1,9 @@
 # Java OOP 远征
 
-<!-- > The _Java OOP Odyssey_ section is translated and adapted from the GeeksforGeeks: "Java Tutorial". Original link: https://www.geeksforgeeks.org/java/. For learning reference only. Infringement contact for removal. -->
-
 1. **类与对象**
    1. 类的本质
    2. 对象的生命
-   3. 构造方法
-   4. 方法重载
+   3. 方法重载
 2. **面向对象三大特性**
    1. 封装
    2. 继承
